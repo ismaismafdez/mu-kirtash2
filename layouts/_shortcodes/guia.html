@@ -1,0 +1,12 @@
+{{- /* {{< guia "dark-knight-skills" >}} enlaza otra guía por su nombre de archivo */ -}}
+{{- $id := .Get 0 -}}
+{{- with partialCached "find.html" $id $id -}}
+{{- $c := partial "cat.html" .Section -}}
+<a class="inline-link" href="{{ .RelPermalink }}" style="--cat:{{ $c.color | safeCSS }}">
+  {{ partial "icon.html" (dict "name" $c.icon) }}
+  <span><small>{{ $c.singular }}</small><strong>{{ .Title }}</strong></span>
+  {{ partial "icon.html" (dict "name" "forward" "class" "go") }}
+</a>
+{{- else -}}
+{{- warnf "%s: guía no encontrada %q" $.Position $id -}}
+{{- end -}}

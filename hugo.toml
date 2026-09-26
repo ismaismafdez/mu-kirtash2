@@ -1,0 +1,29 @@
+# Cambia baseURL por tu dominio al publicar (p. ej. https://mukirtash.pages.dev/)
+baseURL = "http://localhost:1313/"
+locale = "es-ES"
+defaultContentLanguage = "es"
+title = "MU Kirtash"
+disableKinds = ["taxonomy", "term", "rss", "sitemap"]
+enableRobotsTXT = true
+
+[params]
+  subtitle = "Guías · Database · Community"
+  description = "Base de conocimiento de MU Online: personajes, skills, quests, eventos, mapas, monstruos, items y sistemas."
+  defaultSeason = "s21"
+  homeGroupLimit = 6
+  quickFilters = ["personajes", "eventos", "mapas", "items"]
+  version = "0.2"
+
+# La portada genera además /index.json, el índice del buscador
+[outputs]
+  home = ["html", "json"]
+  section = ["html"]
+  page = ["html"]
+
+[markup.goldmark.parser]
+  # IDs de encabezado sin tildes: "Progresión" -> #progresion
+  autoHeadingIDType = "github-ascii"
+
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 2

@@ -1,0 +1,12 @@
+{{- /* Ficha rápida: campos de la categoría + stats de la guía. Sin valor = Pendiente */ -}}
+{{- $stats := .page.Params.stats | default (slice) -}}
+{{- $given := dict -}}
+{{- range $stats }}{{ $given = merge $given (dict .label .value) }}{{ end -}}
+<dl class="facts">
+  {{- range $stats }}{{ if not (in $.cat.fields .label) }}
+  <div class="fact"><dt>{{ .label }}</dt>{{ with .value }}<dd>{{ . }}</dd>{{ else }}<dd class="is-pending">Pendiente</dd>{{ end }}</div>
+  {{- end }}{{ end }}
+  {{- range .cat.fields }}
+  <div class="fact"><dt>{{ . }}</dt>{{ with index $given . }}<dd>{{ . }}</dd>{{ else }}<dd class="is-pending">Pendiente</dd>{{ end }}</div>
+  {{- end }}
+</dl>

@@ -1,0 +1,11 @@
+{{- $page := . -}}
+{{- $current := cond .IsHome "" .Section -}}
+<li><a class="nav-link{{ if .IsHome }} is-active{{ end }}" href="{{ "/" | relURL }}"{{ if .IsHome }} aria-current="page"{{ end }}>
+  {{ partial "icon.html" (dict "name" "home") }}<span>Inicio</span></a></li>
+{{- range hugo.Data.categories }}
+  {{- $active := eq $current .id }}
+  {{- with site.GetPage (printf "/%s" .id) }}
+<li><a class="nav-link{{ if $active }} is-active{{ end }}" href="{{ .RelPermalink }}" style="--cat:{{ (partial "cat.html" .Section).color | safeCSS }}"{{ if and $active (eq $page.Kind "section") }} aria-current="page"{{ end }}>
+  {{ partial "icon.html" (dict "name" (partial "cat.html" .Section).icon) }}<span>{{ (partial "cat.html" .Section).label }}</span><span class="nav-count" data-count="{{ .Section }}">{{ len .RegularPages }}</span></a></li>
+  {{- end }}
+{{- end }}

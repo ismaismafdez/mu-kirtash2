@@ -1,0 +1,2 @@
+{{- /* {{< nota >}}Aviso o aclaración{{< /nota >}} */ -}}
+<div class="callout callout-note">{{ partial "icon.html" (dict "name" "note") }}<p>{{ .Inner | strings.TrimSpace | .Page.RenderString }}</p></div>

@@ -1,0 +1,51 @@
+{{ define "main" }}
+{{- $c := partial "cat.html" .Section }}
+{{- $seasons := partial "seasons-of.html" . }}
+{{- $status := .Params.status | default "demo" }}
+<article class="guide" style="--cat:{{ $c.color | safeCSS }}" data-guide-seasons="{{ delimit $seasons " " }}">
+  <nav class="guide-top" aria-label="Ruta">
+    <a class="back" href="{{ .Parent.RelPermalink }}" data-back>{{ partial "icon.html" (dict "name" "back") }} Volver al catálogo</a>
+    <ol class="crumbs">
+      <li><a href="{{ "/" | relURL }}">Inicio</a></li>
+      <li><a href="{{ .Parent.RelPermalink }}">{{ $c.label }}</a></li>
+      <li aria-current="page">{{ .Title }}</li>
+    </ol>
+  </nav>
+
+  <header class="guide-head">
+    <div class="guide-cat">{{ partial "icon.html" (dict "name" $c.icon) }} {{ $c.singular }}</div>
+    <h1 class="guide-title">{{ .Title }}</h1>
+    <p class="guide-lead">{{ .Description }}</p>
+    <div class="meta">
+      {{- range $seasons }}<span class="badge badge-season">{{ (partial "season.html" .).label }}</span>{{ end }}
+      {{- if eq $status "demo" }}<span class="badge badge-demo">Contenido de ejemplo</span>{{ else }}<span class="badge">Verificada</span>{{ end }}
+      {{- with .Params.updated }}<span class="badge">Actualizada {{ . }}</span>{{ end }}
+    </div>
+  </header>
+
+  {{ partial "guide/media.html" (dict "page" . "cat" $c) }}
+
+  <div class="guide-layout">
+    <div class="toc" role="navigation" aria-label="Índice de contenidos">
+      <p class="toc-title">Índice de contenidos</p>
+      {{- if .Content }}{{ .TableOfContents }}
+      {{- else }}
+      <nav id="TableOfContents"><ul>{{ range $c.template }}<li><a href="#{{ anchorize . }}">{{ . }}</a></li>{{ end }}</ul></nav>
+      {{- end }}
+    </div>
+
+    <div class="guide-body">
+      <div class="callout callout-note" data-season-mismatch hidden>
+        {{ partial "icon.html" (dict "name" "note") }}
+        <p>Esta guía no está marcada para <span data-season-label></span>. La información puede no aplicar a esa versión.</p>
+      </div>
+      {{ partial "guide/facts.html" (dict "page" . "cat" $c) }}
+      {{ partial "guide/sheet.html" . }}
+      <div class="prose">
+        {{- if .Content }}{{ .Content }}{{ else }}{{ partial "guide/template-sections.html" (dict "page" . "cat" $c) }}{{ end }}
+      </div>
+      {{ partial "guide/related.html" . }}
+    </div>
+  </div>
+</article>
+{{ end }}

@@ -1,0 +1,15 @@
+{{- /* Cajas opcionales: aparecen si la guía define el campo (aunque esté vacío) */ -}}
+{{- $boxes := slice (dict "key" "requirements" "label" "Requisitos" "icon" "lock") (dict "key" "drops" "label" "Drops" "icon" "drop") (dict "key" "locations" "label" "Ubicaciones" "icon" "pin") -}}
+{{- $present := slice -}}
+{{- range $boxes }}{{ if isset $.Params .key }}{{ $present = $present | append . }}{{ end }}{{ end -}}
+{{- with $present }}
+<div class="sheet">
+  {{- range . }}
+  {{- $items := index $.Params .key }}
+  <div class="sheet-box">
+    <h3>{{ partial "icon.html" (dict "name" .icon) }} {{ .label }}</h3>
+    {{- if $items }}<ul>{{ range $items }}<li>{{ . }}</li>{{ end }}</ul>{{ else }}<p class="is-pending">Pendiente de completar</p>{{ end }}
+  </div>
+  {{- end }}
+</div>
+{{- end }}
