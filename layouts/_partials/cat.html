@@ -1,0 +1,6 @@
+{{- /* Devuelve la categoría (data/categories.yaml) cuyo id coincide con el recibido */ -}}
+{{- $found := dict -}}
+{{- range hugo.Data.categories -}}
+  {{- if eq .id $ }}{{ $found = . }}{{ end -}}
+{{- end -}}
+{{- return $found -}}

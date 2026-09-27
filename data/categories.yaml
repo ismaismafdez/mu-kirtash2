@@ -1,0 +1,67 @@
+# Cada categoría corresponde a una carpeta de content/ con el mismo id.
+# template: secciones que se generan si una guía no tiene texto propio.
+# fields:   campos de la ficha rápida (se rellenan con "stats" en cada guía).
+- id: personajes
+  label: Personajes
+  singular: Personaje
+  icon: character
+  color: "#d4aa55"
+  blurb: Clases jugables con builds, estadísticas, equipo y progresión.
+  template: [Introducción, Datos, Build, Skills, Equipo, Progresión, Consejos]
+  fields: [Tipo de combate, Estadística principal, Dificultad, Rol en grupo]
+- id: skills
+  label: Skills
+  singular: Skills
+  icon: skill
+  color: "#7fc6ff"
+  blurb: Habilidades por clase, prioridades de mejora y combinaciones.
+  template: [Resumen, Lista de skills, Prioridades, Combinaciones, Consejos]
+  fields: [Clase, Número de skills, Recurso principal, Tipo de daño]
+- id: quests
+  label: Quests
+  singular: Quest
+  icon: quest
+  color: "#e3a857"
+  blurb: Misiones paso a paso con requisitos y recompensas.
+  template: [Resumen, Requisitos, Pasos, Recompensas, Consejos]
+  fields: [Nivel requerido, NPC inicial, Duración estimada, Recompensa principal]
+- id: eventos
+  label: Eventos
+  singular: Evento
+  icon: event
+  color: "#e0705f"
+  blurb: Eventos del juego con acceso, horarios, mecánicas y recompensas.
+  template: [Resumen, Acceso, Horarios, Mecánica, Recompensas, Consejos]
+  fields: [Tipo de evento, Nivel mínimo, Frecuencia, Entrada]
+- id: mapas
+  label: Mapas
+  singular: Mapa
+  icon: map
+  color: "#5fc2a0"
+  blurb: Mapas y zonas de caza con acceso, niveles y monstruos.
+  template: [Resumen, Acceso, Zonas, Monstruos, Consejos]
+  fields: [Nivel recomendado, Acceso, Tipo de zona, PvP]
+- id: monstruos
+  label: Monstruos
+  singular: Monstruo
+  icon: monster
+  color: "#c27ad9"
+  blurb: Fichas de monstruos con datos, ubicación y drops.
+  template: [Resumen, Datos, Ubicación, Drops, Consejos]
+  fields: [Nivel, Vida, Defensa, Mapa]
+- id: items
+  label: Items
+  singular: Item
+  icon: item
+  color: "#f1d58e"
+  blurb: Joyas, sets y armas con requisitos, uso y obtención.
+  template: [Resumen, Datos, Obtención, Uso, Consejos]
+  fields: [Tipo, Requisitos, Clases, Obtención]
+- id: sistemas
+  label: Sistemas
+  singular: Sistema
+  icon: system
+  color: "#9aa7ff"
+  blurb: Mecánicas y sistemas del juego explicados paso a paso.
+  template: [Resumen, Funcionamiento, Progresión, Consejos]
+  fields: [Tipo, Desbloqueo, Recursos, Nivel requerido]

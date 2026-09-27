@@ -1,0 +1,11 @@
+{{- $img := .page.Params.image | default dict -}}
+<figure class="media{{ if $img.src }} has-image{{ end }}">
+  <div class="media-ph">
+    {{ partial "icon.html" (dict "name" .cat.icon) }}
+    <strong>{{ $img.label | default "Imagen principal · Artwork" }}</strong>
+    <small>Espacio reservado · se sustituye con <code>image.src</code></small>
+  </div>
+  {{- with $img.src }}
+  <img src="{{ . | relURL }}" alt="{{ $img.alt | default $.page.Title }}" loading="lazy" data-fallback>
+  {{- end }}
+</figure>

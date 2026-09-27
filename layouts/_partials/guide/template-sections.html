@@ -1,0 +1,36 @@
+{{- /* Secciones generadas con la plantilla de la categoría para guías sin texto propio */ -}}
+{{- $p := .page -}}{{- $c := .cat -}}
+{{- $pend := "Pendiente" -}}
+{{- $pending := `<p class="pending">Contenido pendiente · información de ejemplo.</p>` | safeHTML -}}
+{{- range $c.template }}
+  {{- $k := anchorize . }}
+<h2 id="{{ $k }}">{{ . }}</h2>
+  {{- if in (slice "introduccion" "resumen") $k }}
+<p>{{ $p.Description }}</p>{{ $pending }}
+  {{- else if eq $k "datos" }}
+<div class="table-wrap" tabindex="0" role="region" aria-label="Datos de {{ $p.Title }}">
+  <table><caption>Datos de {{ $p.Title }}</caption>
+    <thead><tr><th scope="col">Campo</th><th scope="col">Valor</th></tr></thead>
+    <tbody>{{ range $c.fields }}<tr><td>{{ . }}</td><td class="is-pending">Pendiente</td></tr>{{ end }}</tbody>
+  </table>
+</div>
+  {{- else if eq $k "pasos" }}
+<ol><li>Pendiente de redactar.</li><li>Pendiente de redactar.</li><li>Pendiente de redactar.</li></ol>
+  {{- else if eq $k "horarios" }}
+{{ partial "guide/table.html" (dict "caption" "Horarios" "head" (slice "Servidor" "Horario" "Notas") "rows" (slice (slice $pend $pend "Los horarios pueden variar según el servidor."))) }}
+  {{- else if in (slice "recompensas" "drops") $k }}
+{{ partial "guide/table.html" (dict "caption" . "head" (slice "Recompensa" "Condición" "Notas") "rows" (slice (slice $pend $pend $pend) (slice $pend $pend $pend))) }}
+  {{- else if in (slice "requisitos" "acceso") $k }}
+<ul><li>Nivel mínimo: pendiente.</li><li>Objeto o condición de acceso: pendiente.</li></ul>
+  {{- else if eq $k "lista-de-skills" }}
+{{ partial "guide/table.html" (dict "caption" "Skills" "head" (slice "Skill" "Tipo" "Notas") "rows" (slice (slice $pend $pend $pend) (slice $pend $pend $pend) (slice $pend $pend $pend))) }}
+  {{- else if eq $k "monstruos" }}
+{{ partial "guide/table.html" (dict "caption" "Monstruos del mapa" "head" (slice "Monstruo" "Nivel" "Zona") "rows" (slice (slice $pend $pend $pend) (slice $pend $pend $pend))) }}
+  {{- else if eq $k "ubicacion" }}
+{{ partial "guide/table.html" (dict "caption" "Ubicación" "head" (slice "Mapa" "Zona" "Notas") "rows" (slice (slice $pend $pend $pend))) }}
+  {{- else if eq $k "consejos" }}
+<div class="callout callout-tip">{{ partial "icon.html" (dict "name" "tip") }}<p>Información de ejemplo: aquí irán consejos prácticos contrastados con la comunidad.</p></div>
+  {{- else }}
+{{ $pending }}
+  {{- end }}
+{{- end }}

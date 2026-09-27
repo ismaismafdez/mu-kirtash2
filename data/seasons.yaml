@@ -1,0 +1,10 @@
+# Orden = orden en el selector. El id se usa en el campo "seasons" de cada guía.
+- id: s21
+  label: Season 21
+  short: S21
+- id: s20
+  label: Season 20
+  short: S20
+- id: archivo
+  label: Archivo
+  short: Archivo

@@ -1,0 +1,13 @@
+{{- /* Filtros rápidos: enlaces a las páginas de categoría */ -}}
+{{- $current := cond .IsHome "all" .Section -}}
+{{- $ids := site.Params.quickFilters -}}
+{{- if and (ne $current "all") (not (in $ids $current)) }}{{ $ids = $ids | append $current }}{{ end -}}
+<nav class="chips" aria-label="Filtrar por categoría">
+  <a class="chip" href="{{ "/" | relURL }}"{{ if eq $current "all" }} aria-current="page"{{ end }}>Todo <span class="chip-count" data-count="all">{{ len site.RegularPages }}</span></a>
+  {{- range $ids }}
+  {{- $c := partial "cat.html" . }}
+  {{- with site.GetPage (printf "/%s" .) }}
+  <a class="chip" href="{{ .RelPermalink }}"{{ if eq $current .Section }} aria-current="page"{{ end }}>{{ $c.label }} <span class="chip-count" data-count="{{ .Section }}">{{ len .RegularPages }}</span></a>
+  {{- end }}
+  {{- end }}
+</nav>

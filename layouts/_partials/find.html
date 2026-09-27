@@ -1,0 +1,6 @@
+{{- /* Busca una guía por nombre de archivo (sin .md). Devuelve la página o false. */ -}}
+{{- $found := false -}}
+{{- range site.RegularPages -}}
+  {{- if eq .File.ContentBaseName $ }}{{ $found = . }}{{ end -}}
+{{- end -}}
+{{- return $found -}}
