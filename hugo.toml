@@ -1,5 +1,5 @@
 # Cambia baseURL por tu dominio al publicar (p. ej. https://mukirtash.pages.dev/)
-baseURL = "https://ismaismafdez.github.io/mu-kirtash2/"
+baseURL = "http://localhost:1313/"
 locale = "es-ES"
 defaultContentLanguage = "es"
 title = "MU Kirtash"
