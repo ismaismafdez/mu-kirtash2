@@ -1,8 +1,0 @@
-<div class="empty" data-season-empty hidden>
-  {{ partial "icon.html" (dict "name" "archive") }}
-  <h2>No hay guías en <span data-season-label></span></h2>
-  <p>Cuando se añadan o archiven guías para esta versión aparecerán aquí.</p>
-  <div class="empty-actions">
-    <button type="button" class="btn btn-primary" data-set-season="{{ site.Params.defaultSeason }}">Ver {{ (partial "season.html" site.Params.defaultSeason).label }}</button>
-  </div>
-</div>

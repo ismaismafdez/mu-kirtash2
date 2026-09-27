@@ -1,4 +1,0 @@
-{{- /* Uso: partial "icon.html" (dict "name" "map" "class" "opcional") */ -}}
-{{- $path := index hugo.Data.icons .name | default "" -}}
-<svg class="i{{ with .class }} {{ . }}{{ end }}" viewBox="0 0 24 24" aria-hidden="true">{{ $path | safeHTML }}</svg>
-{{- /**/ -}}

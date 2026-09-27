@@ -1,5 +1,0 @@
-{{- $found := dict "id" . "label" . "short" . -}}
-{{- range hugo.Data.seasons -}}
-  {{- if eq .id $ }}{{ $found = . }}{{ end -}}
-{{- end -}}
-{{- return $found -}}
